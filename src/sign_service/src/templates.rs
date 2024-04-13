@@ -1,10 +1,7 @@
 use core::panic;
 
-use axum::{http::StatusCode, response::Html};
 use lazy_static::lazy_static;
-use tera::{Context, Tera};
-
-use crate::tool::Tool;
+use tera::Tera;
 
 lazy_static! {
     pub static ref TEMPLATES: Tera = {
