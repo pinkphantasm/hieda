@@ -29,7 +29,7 @@ services:
     build: ./src/status_service
     environment:
       - ADDR=0.0.0.0:3001
-      - SERVICES=Static=http://static:3000
+      - "SERVICES=Static=http://static:3000 Index=http://index:3002 Upload=http://upload:3003"
     labels:
       - traefik.http.routers.status.entrypoints=http
       - traefik.http.routers.status.rule=PathPrefix(`/status`)
