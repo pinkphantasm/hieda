@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/shelepuginivan/microservices-template/src/status_service/internal/pkg/service"
+	"github.com/pinkphantasm/hieda/src/status_service/internal/pkg/service"
 )
 
 type Config struct {

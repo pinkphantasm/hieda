@@ -3,9 +3,9 @@ package controllers
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/shelepuginivan/microservices-template/src/status_service/internal/pkg/config"
-	"github.com/shelepuginivan/microservices-template/src/status_service/internal/pkg/health"
-	"github.com/shelepuginivan/microservices-template/src/status_service/internal/pkg/service"
+	"github.com/pinkphantasm/hieda/src/status_service/internal/pkg/config"
+	"github.com/pinkphantasm/hieda/src/status_service/internal/pkg/health"
+	"github.com/pinkphantasm/hieda/src/status_service/internal/pkg/service"
 )
 
 // HealthController is a Fiber service health controller.

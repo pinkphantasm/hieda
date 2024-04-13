@@ -3,7 +3,7 @@ package server
 import (
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
-	"github.com/shelepuginivan/microservices-template/src/static_service/internal/pkg/health"
+	"github.com/pinkphantasm/hieda/src/static_service/internal/pkg/health"
 )
 
 func registerApi(app *fiber.App) {

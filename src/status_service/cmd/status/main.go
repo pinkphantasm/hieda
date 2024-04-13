@@ -7,8 +7,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/shelepuginivan/microservices-template/src/status_service/internal/app/server"
-	"github.com/shelepuginivan/microservices-template/src/status_service/internal/pkg/config"
+	"github.com/pinkphantasm/hieda/src/status_service/internal/app/server"
+	"github.com/pinkphantasm/hieda/src/status_service/internal/pkg/config"
 )
 
 func main() {

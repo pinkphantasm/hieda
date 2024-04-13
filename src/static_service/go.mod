@@ -1,4 +1,4 @@
-module github.com/shelepuginivan/microservices-template/src/static_service
+module github.com/pinkphantasm/hieda/src/static_service
 
 go 1.21.3
 

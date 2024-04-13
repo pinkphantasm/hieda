@@ -1,4 +1,4 @@
-module github.com/shelepuginivan/microservices-template/src/status_service
+module github.com/pinkphantasm/hieda/src/status_service
 
 go 1.21.3
 
