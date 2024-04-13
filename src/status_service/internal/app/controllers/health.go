@@ -31,3 +31,10 @@ func (co HealthController) SelfHealth(c *fiber.Ctx) error {
 func (co HealthController) CheckStatuses(c *fiber.Ctx) error {
 	return c.JSON(co.a.CheckHealth(co.s))
 }
+
+func (co HealthController) StatusPage(c *fiber.Ctx) error {
+	return c.Render("index", fiber.Map{
+		"Title":    "Hieda Status",
+		"Statuses": co.a.CheckHealth(co.s),
+	})
+}
