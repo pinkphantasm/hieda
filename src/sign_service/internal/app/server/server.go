@@ -1,21 +1,18 @@
 package server
 
 import (
-	"io"
-	"net/http"
-
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2"
+	"github.com/pinkphantasm/hieda/src/sign_service/internal/app/controllers"
 	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/crypto"
 	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/hash"
 	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/health"
 )
 
-func registerHandlers(
+func registerApi(
 	app *fiber.App,
-	ca *crypto.Adapter,
-	ha *hash.Adapter,
+	co *controllers.ApiController,
 ) {
 	api := app.Group("/api")
 
@@ -23,78 +20,8 @@ func registerHandlers(
 		return c.JSON(health.NewResponse("All systems operational"))
 	})
 
-	api.Post("/sign", func(c *fiber.Ctx) error {
-		uploadedFile, err := c.FormFile("file")
-		if err != nil {
-			return err
-		}
-
-		file, err := uploadedFile.Open()
-		if err != nil {
-			return err
-		}
-		defer file.Close()
-
-		data, err := io.ReadAll(file)
-		if err != nil {
-			return err
-		}
-
-		sha256sum := ha.Hash(data)
-		signature, err := ca.Sign(sha256sum)
-
-		if err != nil {
-			return err
-		}
-
-		c.Response().Header.Set(fiber.HeaderContentType, "application/octet-stream")
-		c.Response().Header.Set(fiber.HeaderContentDisposition, "attachment; filename=signature.hieda")
-		return c.Send(signature)
-	})
-
-	api.Post("/verify", func(c *fiber.Ctx) error {
-		uploadedFile, err := c.FormFile("file")
-		if err != nil {
-			return err
-		}
-
-		file, err := uploadedFile.Open()
-		if err != nil {
-			return err
-		}
-		defer file.Close()
-
-		data, err := io.ReadAll(file)
-		if err != nil {
-			return err
-		}
-
-		signatureUploadedFile, err := c.FormFile("signature")
-		if err != nil {
-			return err
-		}
-
-		signatureFile, err := signatureUploadedFile.Open()
-		if err != nil {
-			return err
-		}
-		defer signatureFile.Close()
-
-		signature, err := io.ReadAll(signatureFile)
-		if err != nil {
-			return err
-		}
-
-		if !ca.Compare(ha.Hash(data), signature) {
-			return c.Status(http.StatusUnprocessableEntity).JSON(fiber.Map{
-				"details": "err invalid signature",
-			})
-		}
-
-		return c.JSON(fiber.Map{
-			"details": "ok",
-		})
-	})
+	api.Post("/sign", co.Sign)
+	api.Post("/verify", co.Verify)
 }
 
 func registerSwagger(app *fiber.App) {
@@ -117,8 +44,9 @@ func New() *fiber.App {
 
 	ca := crypto.NewAdapter()
 	ha := hash.NewAdapter()
+	apiController := controllers.NewApi(ca, ha)
 
-	registerHandlers(app, ca, ha)
+	registerApi(app, apiController)
 	registerSwagger(app)
 
 	return app
