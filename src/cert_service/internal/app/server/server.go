@@ -10,10 +10,7 @@ import (
 	"github.com/pinkphantasm/hieda/src/cert_service/internal/pkg/health"
 )
 
-func registerApi(
-	app *fiber.App,
-	co *controllers.ApiController,
-) {
+func registerApi(app *fiber.App, co *controllers.ApiController) {
 	api := app.Group("/api")
 
 	api.Get("/health", func(c *fiber.Ctx) error {
@@ -36,6 +33,11 @@ func registerSwagger(app *fiber.App) {
 	}))
 }
 
+func registerViews(app *fiber.App, co *controllers.ViewsController) {
+	app.Get("/sign", co.SignPage)
+	app.Get("/verify", co.VerifyPage)
+}
+
 func New() *fiber.App {
 	engine := html.New("./views", ".html")
 	app := fiber.New(fiber.Config{
@@ -45,9 +47,11 @@ func New() *fiber.App {
 	ca := crypto.NewAdapter()
 	ha := hash.NewAdapter()
 	apiController := controllers.NewApi(ca, ha)
+	viewsController := controllers.NewViews()
 
 	registerApi(app, apiController)
 	registerSwagger(app)
+	registerViews(app, viewsController)
 
 	return app
 }
