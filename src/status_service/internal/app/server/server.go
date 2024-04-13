@@ -4,13 +4,16 @@ package server
 import (
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/template/html/v2"
 	"github.com/pinkphantasm/hieda/src/status_service/internal/app/controllers"
 	"github.com/pinkphantasm/hieda/src/status_service/internal/pkg/health"
 )
 
-func registerApi(app *fiber.App) {
+func registerHandlers(app *fiber.App) {
 	healthAdapter := health.NewAdapter()
 	healthController := controllers.NewHealth(healthAdapter)
+
+	app.Get("/", healthController.StatusPage)
 
 	api := app.Group("/api")
 	api.Get("/health", healthController.SelfHealth)
@@ -30,9 +33,13 @@ func registerSwagger(app *fiber.App) {
 }
 
 func New() *fiber.App {
-	app := fiber.New()
+	engine := html.New("./views", ".html")
 
-	registerApi(app)
+	app := fiber.New(fiber.Config{
+		Views: engine,
+	})
+
+	registerHandlers(app)
 	registerSwagger(app)
 
 	return app
