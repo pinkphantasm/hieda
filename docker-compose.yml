@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  reverse-proxy:
+    image: traefik:v2.11
+    command: --api.insecure=true --providers.docker
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - traefik.enable=false
+
+  static:
+    build: ./src/static_service
+    environment:
+      - ADDR=0.0.0.0:3000
+    labels:
+      - traefik.http.routers.static.entrypoints=http
+      - traefik.http.routers.static.rule=PathPrefix(`/static`)
+      - traefik.http.middlewares.staticprefix.stripprefix.prefixes=/static
+      - traefik.http.routers.static.middlewares=staticprefix@docker
+      - traefik.http.services.static.loadbalancer.server.port=3000
+    ports:
+      - 3000
+
+  status:
+    build: ./src/status_service
+    environment:
+      - ADDR=0.0.0.0:3001
+      - SERVICES=Static=http://static:3000
+    labels:
+      - traefik.http.routers.status.entrypoints=http
+      - traefik.http.routers.status.rule=PathPrefix(`/status`)
+      - traefik.http.middlewares.statusprefix.stripprefix.prefixes=/status
+      - traefik.http.routers.status.middlewares=statusprefix@docker
+      - traefik.http.services.status.loadbalancer.server.port=3001
+    ports:
+      - 3001

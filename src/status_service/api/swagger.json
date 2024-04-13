@@ -1,0 +1,93 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Status Service API",
+    "description": "Status Service API documentation.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Check service status.",
+        "description": "Check status of service.",
+        "responses": {
+          "200": {
+            "description": "All systems operational",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/status": {
+      "get": {
+        "summary": "Check statuses of all services.",
+        "description": "Check statuses of all services.",
+        "responses": {
+          "200": {
+            "description": "Statuses of services.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Health"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Status": {
+        "type": "object",
+        "properties": {
+          "details": {
+            "type": "string",
+            "example": "All systems operational."
+          }
+        }
+      },
+      "Health": {
+        "type": "object",
+        "properties": {
+          "addr": {
+            "type": "string",
+            "example": "http://127.0.0.1:8000"
+          },
+          "details": {
+            "type": "string",
+            "example": "All systems operational."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the service",
+            "example": "Notification"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Operational",
+              "Not running",
+              "Degraded"
+            ],
+            "description": "Status of the service"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}
