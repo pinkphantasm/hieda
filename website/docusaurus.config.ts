@@ -7,7 +7,6 @@ const config: Config = {
   tagline: '',
   favicon: 'img/favicon.ico',
 
-  // Set the production url of your site here
   url: 'https://hieda.pinkphantasm.ru/',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
@@ -56,7 +55,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/hieda-social-card.png',
     navbar: {
       title: 'Hieda',
       logo: {
