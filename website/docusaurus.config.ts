@@ -45,8 +45,8 @@ const config: Config = {
         navbar: {
             title: 'Hieda',
             logo: {
-                alt: 'My Site Logo',
-                src: 'img/logo.svg',
+                alt: 'Hieda Logo',
+                src: 'img/logo.png',
             },
             items: [
                 {
