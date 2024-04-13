@@ -65,3 +65,17 @@ services:
       - traefik.http.services.upload.loadbalancer.server.port=3003
     ports:
       - 3003
+
+  cert:
+    build: ./src/cert_service
+    environment:
+      - ADDR=0.0.0.0:3004
+      - PRIVATE_KEY=/usr/certs/key.pem
+    labels:
+      - traefik.http.routers.cert.entrypoints=http
+      - traefik.http.routers.cert.rule=PathPrefix(`/cert`)
+      - traefik.http.middlewares.certprefix.stripprefix.prefixes=/cert
+      - traefik.http.routers.cert.middlewares=certprefix@docker
+      - traefik.http.services.cert.loadbalancer.server.port=3004
+    ports:
+      - 3004
