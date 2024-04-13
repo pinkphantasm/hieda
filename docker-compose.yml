@@ -29,7 +29,7 @@ services:
     build: ./src/status_service
     environment:
       - ADDR=0.0.0.0:3001
-      - "SERVICES=Static=http://static:3000 Index=http://index:3002 Upload=http://upload:3003"
+      - "SERVICES=Static=http://static:3000 Index=http://index:3002 Upload=http://upload:3003 Certification=http://cert:3004"
     labels:
       - traefik.http.routers.status.entrypoints=http
       - traefik.http.routers.status.rule=PathPrefix(`/status`)
@@ -65,3 +65,17 @@ services:
       - traefik.http.services.upload.loadbalancer.server.port=3003
     ports:
       - 3003
+
+  cert:
+    build: ./src/cert_service
+    environment:
+      - ADDR=0.0.0.0:3004
+      - PRIVATE_KEY=/usr/certs/key.pem
+    labels:
+      - traefik.http.routers.cert.entrypoints=http
+      - traefik.http.routers.cert.rule=PathPrefix(`/cert`)
+      - traefik.http.middlewares.certprefix.stripprefix.prefixes=/cert
+      - traefik.http.routers.cert.middlewares=certprefix@docker
+      - traefik.http.services.cert.loadbalancer.server.port=3004
+    ports:
+      - 3004
