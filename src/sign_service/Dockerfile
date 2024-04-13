@@ -1,21 +1,13 @@
-FROM rust:1.75
+FROM golang:1.22.1
 
-RUN USER=root cargo new --bin index_service
+WORKDIR /usr/src/app
 
-WORKDIR /index_service
+# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
+COPY go.mod go.sum ./
+RUN go mod download && go mod verify
 
-COPY ./Cargo.lock ./Cargo.lock
-COPY ./Cargo.toml ./Cargo.toml
+COPY . .
 
-RUN cargo build --release
+RUN go build -v -o /usr/local/bin/app ./cmd/sign_service/main.go
 
-RUN rm src/*.rs
-
-COPY ./src ./src
-COPY ./views ./views
-
-RUN rm ./target/release/deps/index_service*
-
-RUN cargo install --path .
-
-CMD ["index_service"]
+CMD app

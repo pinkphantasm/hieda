@@ -1,0 +1,41 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Static Service API",
+    "description": "Static Service API documentation.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "Check service status.",
+        "description": "Check status of service.",
+        "responses": {
+          "200": {
+            "description": "All systems operational",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Status"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Status": {
+        "type": "object",
+        "properties": {
+          "details": {
+            "type": "string",
+            "example": "All systems operational."
+          }
+        }
+      }
+    }
+  }
+}
