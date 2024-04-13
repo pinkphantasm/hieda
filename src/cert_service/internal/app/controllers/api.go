@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
-	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/crypto"
-	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/hash"
+	"github.com/pinkphantasm/hieda/src/cert_service/internal/pkg/crypto"
+	"github.com/pinkphantasm/hieda/src/cert_service/internal/pkg/hash"
 )
 
 type ApiController struct {

@@ -6,8 +6,10 @@ WORKDIR /usr/src/app
 COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 
+COPY ./key.pem /usr/certs/key.pem
+
 COPY . .
 
-RUN go build -v -o /usr/local/bin/app ./cmd/sign_service/main.go
+RUN go build -v -o /usr/local/bin/app ./cmd/cert_service/main.go
 
 CMD app

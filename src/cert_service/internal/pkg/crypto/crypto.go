@@ -8,7 +8,7 @@ import (
 	"encoding/pem"
 	"os"
 
-	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/config"
+	"github.com/pinkphantasm/hieda/src/cert_service/internal/pkg/config"
 )
 
 type Adapter struct {

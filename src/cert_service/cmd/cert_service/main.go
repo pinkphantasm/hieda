@@ -7,8 +7,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/pinkphantasm/hieda/src/sign_service/internal/app/server"
-	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/config"
+	"github.com/pinkphantasm/hieda/src/cert_service/internal/app/server"
+	"github.com/pinkphantasm/hieda/src/cert_service/internal/pkg/config"
 )
 
 func main() {

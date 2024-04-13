@@ -4,10 +4,10 @@ import (
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html/v2"
-	"github.com/pinkphantasm/hieda/src/sign_service/internal/app/controllers"
-	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/crypto"
-	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/hash"
-	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/health"
+	"github.com/pinkphantasm/hieda/src/cert_service/internal/app/controllers"
+	"github.com/pinkphantasm/hieda/src/cert_service/internal/pkg/crypto"
+	"github.com/pinkphantasm/hieda/src/cert_service/internal/pkg/hash"
+	"github.com/pinkphantasm/hieda/src/cert_service/internal/pkg/health"
 )
 
 func registerApi(

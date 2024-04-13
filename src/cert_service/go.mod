@@ -1,4 +1,4 @@
-module github.com/pinkphantasm/hieda/src/sign_service
+module github.com/pinkphantasm/hieda/src/cert_service
 
 go 1.22.1
 

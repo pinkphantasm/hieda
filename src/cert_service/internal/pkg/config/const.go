@@ -5,4 +5,4 @@ const (
 	ENV_PRIVATE_KEY = "PRIVATE_KEY"
 )
 
-const ServiceName = "Sign"
+const ServiceName = "Certification"
