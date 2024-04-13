@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="/static/css/common.css">
     <link rel="stylesheet" type="text/css" href="/static/css/fonts.css">
-    <title>Hieda</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/form.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/clip.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/draganddrop.css">
+    <script src="/static/js/clip.js" defer></script>
+    <script src="/static/js/draganddrop.js" defer></script>
+    <script src="/static/vendor/js/htmx.min.js"></script>
+    <title>Загрузка файлов | Hieda</title>
 </head>
 <body>
     <div class="wrapper">
@@ -15,7 +21,31 @@
             </a>
         </header>
         <main class="main">
-            <h1>Hieda</h1>
+            <h1 class="page-title">Загрузка документов</h1>
+            <form
+                class="form"
+                action="/upload/api/upload"
+                method="post"
+                enctype="multipart/form-data"
+                hx-boost="true"
+                hx-push-url="false"
+                hx-target="#clip-area-wrapper"
+                hx-swap="innerHTML"
+            >
+                <label class="drop-area">
+                    Выберите документ
+                    <input
+                        type="file"
+                        name="file"
+                        accept="application/pdf"
+                        required={required}
+                    >
+                </label>
+                <button class="button-primary" type="submit">
+                    Загрузить
+                </button>
+                <div id="clip-area-wrapper"></div>
+            </form>
         </main>
         <footer class="footer">
         </footer>
