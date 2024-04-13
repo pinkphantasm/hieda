@@ -1,0 +1,120 @@
+:root {
+    --bg1: #232323;
+    --bg2: #404240;
+    --fg: #F5FFFA;
+    --comment: #787976;
+    --cyan: #6495ED;
+    --green: #50B160;
+    --orange: #FFA474;
+    --pink: #FDD0E5;
+    --purple: #9579E5;
+    --red: #FE4242;
+    --yellow: #FFF44F;
+}
+
+* {
+    transition-property: color, background-color, border-color;
+    transition-duration: .2s;
+    transition-timing-function: ease;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg1);
+    color: var(--fg);
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header,
+.footer {
+    padding: 24px 5%;
+}
+
+.home-link,
+.home-link > h1 {
+    text-decoration: none;
+    font-size: large;
+    display: block;
+    width: fit-content;
+}
+
+.main {
+    padding-inline: 5%;
+    flex-grow: 1;
+}
+
+code, kbd, var, samp, code * {
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.gradient-text {
+    background: var(--pink, pink);
+    background: linear-gradient(to right, var(--pink, pink) 0%, var(--orange, orange) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-title {
+    font-family: 'Comfortaa', sans-serif;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.nav {
+    margin-bottom: 32px;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    font-size: large;
+}
+
+a.link {
+    text-decoration: none;
+    color: var(--cyan, cyan);
+}
+
+a.link:hover {
+    text-decoration: underline;
+}
+
+.tool-link-card {
+    border-left: 2px solid var(--bg2, gray);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 8px 0 8px 16px;
+    margin-block: 20px;
+}
+
+.tool-link-card[data-hover-border="red"]:hover {
+    border-color: var(--red, red);
+}
+
+.tool-link-card[data-hover-border="green"]:hover {
+    border-color: var(--green, green);
+}
+
+.tool-link-card[data-hover-border="yellow"]:hover {
+    border-color: var(--yellow, yellow);
+}
+
+.tool-link-card[data-hover-border="pink"]:hover {
+    border-color: var(--pink, pink);
+}
