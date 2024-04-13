@@ -1,0 +1,33 @@
+.clip-area {
+    display: flex;
+    padding: 12px;
+    gap: 12px;
+    background-color: var(--bg2, gray);
+}
+
+.clip-area-text {
+    flex-grow: 1;
+    font-family: 'JetBrains Mono', monospace;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+
+.clip-area-button {
+    padding: 8px;
+    color: var(--comment);
+    background-color: transparent;
+    border: 1px solid var(--comment);
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.clip-area-button.success {
+    color: var(--green, green);
+    border-color: var(--green, green);
+}
+
+.clip-area-button.error {
+    color: var(--red, red);
+    border-color: var(--red, red);
+}
