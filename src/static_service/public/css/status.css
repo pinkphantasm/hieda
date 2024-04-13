@@ -1,0 +1,50 @@
+.service-status-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 8px 48px;
+    border: 1px solid var(--bg2, gray);
+    border-bottom-width: 0;
+}
+
+.service-status-card:last-child {
+    border-bottom-width: 1px;
+}
+
+.service-status-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.button-show-status-details {
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.button-show-status-details > h3 {
+    font-weight: normal;
+}
+
+.button-show-status-details[data-status="Operational"],
+.button-show-status-details[data-status="Operational"] * {
+    color: var(--green, green);
+}
+
+.button-show-status-details[data-status="Degraded"],
+.button-show-status-details[data-status="Degraded"] * {
+    color: var(--red, red);
+}
+
+.button-show-status-details[data-status="Not running"],
+.button-show-status-details[data-status="Not running"] * {
+    color: var(--comment, gray);
+}
+
+.service-status-details * {
+    font-size: x-small;
+    color: var(--comment, gray);
+}
