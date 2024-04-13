@@ -3,6 +3,8 @@ package server
 import (
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/template/html/v2"
+	"github.com/pinkphantasm/hieda/src/index_service/internal/app/controllers"
 	"github.com/pinkphantasm/hieda/src/index_service/internal/pkg/health"
 )
 
@@ -26,11 +28,21 @@ func registerSwagger(app *fiber.App) {
 	}))
 }
 
+func registerViews(app *fiber.App, co *controllers.ViewsController) {
+	app.Get("/", co.IndexPage)
+}
+
 func New() *fiber.App {
-	app := fiber.New()
+	engine := html.New("./views", ".html")
+	app := fiber.New(fiber.Config{
+		Views: engine,
+	})
+
+	viewsController := controllers.NewViews()
 
 	registerApi(app)
 	registerSwagger(app)
+	registerViews(app, viewsController)
 
 	return app
 }
