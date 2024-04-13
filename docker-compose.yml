@@ -38,3 +38,14 @@ services:
       - traefik.http.services.status.loadbalancer.server.port=3001
     ports:
       - 3001
+
+  index:
+    build: ./src/index_service
+    environment:
+      - ADDR=0.0.0.0:3002
+    labels:
+      - traefik.http.routers.index.entrypoints=http
+      - traefik.http.routers.index.rule=PathPrefix(`/`)
+      - traefik.http.services.index.loadbalancer.server.port=3002
+    ports:
+      - 3002
