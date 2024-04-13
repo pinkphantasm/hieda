@@ -8,21 +8,14 @@ const config: Config = {
     favicon: 'img/favicon.ico',
 
     url: 'https://hieda.pinkphantasm.ru/',
-    // Set the /<baseUrl>/ pathname under which your site is served
-    // For GitHub pages deployment, it is often '/<projectName>/'
     baseUrl: '/',
 
-    // GitHub pages deployment config.
-    // If you aren't using GitHub pages, you don't need these.
-    organizationName: 'pinkphantasm', // Usually your GitHub org/user name.
-    projectName: 'Hieda', // Usually your repo name.
+    organizationName: 'pinkphantasm',
+    projectName: 'Hieda',
 
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'warn',
 
-    // Even if you don't use internationalization, you can use this field to set
-    // useful metadata like html lang. For example, if your site is Chinese, you
-    // may want to replace "en" with "zh-Hans".
     i18n: {
         defaultLocale: 'en',
         locales: ['en'],
@@ -34,14 +27,10 @@ const config: Config = {
             {
                 docs: {
                     sidebarPath: './sidebars.ts',
-                    // Please change this to your repo.
-                    // Remove this to remove the "edit this page" links.
                     editUrl: 'https://github.com/pinkphantasm/hieda',
                 },
                 blog: {
                     showReadingTime: true,
-                    // Please change this to your repo.
-                    // Remove this to remove the "edit this page" links.
                     editUrl: 'https://github.com/pinkphantasm/hieda',
                 },
                 theme: {
@@ -52,7 +41,6 @@ const config: Config = {
     ],
 
     themeConfig: {
-        // Replace with your project's social card
         image: 'img/hieda-social-card.png',
         navbar: {
             title: 'Hieda',
@@ -65,7 +53,7 @@ const config: Config = {
                     type: 'docSidebar',
                     sidebarId: 'tutorialSidebar',
                     position: 'left',
-                    label: 'Tutorial',
+                    label: 'Documentation',
                 },
                 { to: '/blog', label: 'Blog', position: 'left' },
                 {
@@ -82,7 +70,7 @@ const config: Config = {
                     title: 'Docs',
                     items: [
                         {
-                            label: 'Tutorial',
+                            label: 'Introduction',
                             to: '/docs/intro',
                         },
                     ],
