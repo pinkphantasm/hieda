@@ -1,6 +1,7 @@
 package crypto
 
 import (
+	"bytes"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
@@ -40,4 +41,13 @@ func (a Adapter) Sign(data []byte) ([]byte, error) {
 
 func (a Adapter) Verify(data []byte) ([]byte, error) {
 	return rsa.DecryptPKCS1v15(rand.Reader, a.privateKey, data)
+}
+
+func (a Adapter) Compare(data, signed []byte) bool {
+	verifiedData, err := a.Verify(signed)
+	if err != nil {
+		return false
+	}
+
+	return bytes.Equal(data, verifiedData)
 }
