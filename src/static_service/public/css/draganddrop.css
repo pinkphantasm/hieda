@@ -1,0 +1,21 @@
+.drop-area {
+    padding: 48px 32px;
+    border: 2px solid var(--bg2, gray);
+    border-radius: 4px;
+    color: var(--secondary, gray);
+    text-align: center;
+    cursor: pointer;
+}
+
+.drop-area input[type="file"] {
+    display: none;
+}
+
+.drop-area.hover {
+    border-style: dashed;
+}
+
+.drop-area.uploaded {
+    border-color: var(--green, green);
+    color: var(--green, green);
+}
