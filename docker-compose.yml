@@ -29,7 +29,7 @@ services:
     build: ./src/status_service
     environment:
       - ADDR=0.0.0.0:3001
-      - SERVICES=Static=http://static:3000
+      - "SERVICES=Static=http://static:3000 Index=http://index:3002 Upload=http://upload:3003"
     labels:
       - traefik.http.routers.status.entrypoints=http
       - traefik.http.routers.status.rule=PathPrefix(`/status`)
@@ -49,3 +49,19 @@ services:
       - traefik.http.services.index.loadbalancer.server.port=3002
     ports:
       - 3002
+
+  upload:
+    build: ./src/upload_service
+    environment:
+      - ADDR=0.0.0.0:3003
+      - S3_BUCKET=${S3_BUCKET}
+      - S3_KEY=${S3_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+    labels:
+      - traefik.http.routers.upload.entrypoints=http
+      - traefik.http.routers.upload.rule=PathPrefix(`/upload`)
+      - traefik.http.middlewares.uploadprefix.stripprefix.prefixes=/upload
+      - traefik.http.routers.upload.middlewares=uploadprefix@docker
+      - traefik.http.services.upload.loadbalancer.server.port=3003
+    ports:
+      - 3003
