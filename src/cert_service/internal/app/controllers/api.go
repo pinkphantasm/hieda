@@ -81,12 +81,42 @@ func (co ApiController) Verify(c *fiber.Ctx) error {
 	}
 
 	if !co.ca.Compare(co.ha.Hash(data), signature) {
-		return c.Status(http.StatusUnprocessableEntity).JSON(fiber.Map{
+		return co.VerificationFailure(c, c.FormValue("format", "json"))
+	}
+
+	return co.VerificationSuccess(c, c.FormValue("format", "json"))
+}
+
+func (co ApiController) VerificationSuccess(c *fiber.Ctx, format string) error {
+	switch format {
+	case "html":
+		c.Response().Header.Set(fiber.HeaderContentType, "text/html; charset=utf-8")
+		return c.SendString(`<div>
+	<h3>Verification Succeeded!</h3>
+	<p>Powered by Hieda</p>
+</div>`)
+
+	default:
+		return c.JSON(fiber.Map{
+			"details": "ok",
+		})
+	}
+}
+
+func (co ApiController) VerificationFailure(c *fiber.Ctx, format string) error {
+	c.Status(http.StatusUnauthorized)
+
+	switch format {
+	case "html":
+		c.Response().Header.Set(fiber.HeaderContentType, "text/html; charset=utf-8")
+		return c.SendString(`<div">
+	<h3>Verification Failed!</h3>
+	<p>Powered by Hieda</p>
+</div>`)
+
+	default:
+		return c.JSON(fiber.Map{
 			"details": "err invalid signature",
 		})
 	}
-
-	return c.JSON(fiber.Map{
-		"details": "ok",
-	})
 }
