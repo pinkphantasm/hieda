@@ -74,6 +74,12 @@ github.com/gofiber/contrib/swagger v1.1.1 h1:on+D2fbXkvm0H0lur1rx69mpxLdX1wIH/Fr
 github.com/gofiber/contrib/swagger v1.1.1/go.mod h1:pa9awsFSz/3BbSnyTe/drNZaiFfnhC4hk3m9BVet7Co=
 github.com/gofiber/fiber/v2 v2.52.2 h1:b0rYH6b06Df+4NyrbdptQL8ifuxw/Tf2DgfkZkDaxEo=
 github.com/gofiber/fiber/v2 v2.52.2/go.mod h1:KEOE+cXMhXG0zHc9d8+E38hoX+ZN7bhOtgeF2oT6jrQ=
+github.com/gofiber/template v1.8.3 h1:hzHdvMwMo/T2kouz2pPCA0zGiLCeMnoGsQZBTSYgZxc=
+github.com/gofiber/template v1.8.3/go.mod h1:bs/2n0pSNPOkRa5VJ8zTIvedcI/lEYxzV3+YPXdBvq8=
+github.com/gofiber/template/html/v2 v2.1.1 h1:QEy3O3EBkvwDthy5bXVGUseOyO6ldJoiDxlF4+MJiV8=
+github.com/gofiber/template/html/v2 v2.1.1/go.mod h1:2G0GHHOUx70C1LDncoBpe4T6maQbNa4x1CVNFW0wju0=
+github.com/gofiber/utils v1.1.0 h1:vdEBpn7AzIUJRhe+CiTOJdUcTg4Q9RK+pEa0KPbLdrM=
+github.com/gofiber/utils v1.1.0/go.mod h1:poZpsnhBykfnY1Mc0KeEa6mSHrS3dV0+oBWyeQmb2e0=
 github.com/golang/snappy v0.0.1/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
 github.com/google/go-cmp v0.5.2 h1:X2ev0eStA3AbceY54o37/0PQ/UWqKEiiO2dKL5OPaFM=
 github.com/google/go-cmp v0.5.2/go.mod h1:v8dTdLbMG2kIc/vJvl+f65V22dbkXbowE6jgT/gNBxE=

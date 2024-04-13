@@ -6,6 +6,7 @@ import (
 
 	"github.com/gofiber/contrib/swagger"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/template/html/v2"
 	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/crypto"
 	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/hash"
 	"github.com/pinkphantasm/hieda/src/sign_service/internal/pkg/health"
@@ -109,7 +110,11 @@ func registerSwagger(app *fiber.App) {
 }
 
 func New() *fiber.App {
-	app := fiber.New()
+	engine := html.New("./views", ".html")
+	app := fiber.New(fiber.Config{
+		Views: engine,
+	})
+
 	ca := crypto.NewAdapter()
 	ha := hash.NewAdapter()
 
