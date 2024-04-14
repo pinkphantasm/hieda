@@ -1,5 +1,4 @@
 from fastapi import APIRouter, Depends, UploadFile
-from fastapi.responses import HTMLResponse
 
 from ..internal.s3_adapter import S3Adapter, new_s3_adapter
 
@@ -7,21 +6,15 @@ from ..internal.s3_adapter import S3Adapter, new_s3_adapter
 router = APIRouter()
 
 
-@router.get("/api/health", status_code=200)
+@router.get("/api/health")
 async def health():
     return {"details": "All systems operational"}
 
 
-@router.post("/api/upload", response_class=HTMLResponse)
+@router.post("/api/upload")
 async def upload(
     file: UploadFile,
     s3_adapter: S3Adapter = Depends(new_s3_adapter),
 ):
     file_url = s3_adapter.upload(file.file, file.filename)
-
-    return HTMLResponse(
-        content=f"""<div class="clip-area">
-    <span class="clip-area-text">{file_url}</span>
-    <button type="button" class="clip-area-button">Копировать</button>
-</div>"""
-    )
+    return {"url": file_url}
