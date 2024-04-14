@@ -4,7 +4,7 @@ import type * as Preset from '@docusaurus/preset-classic'
 
 const config: Config = {
     title: 'Hieda',
-    tagline: '',
+    tagline: 'Open source solution for electronic document management',
     favicon: 'img/favicon.ico',
 
     url: 'https://hieda.pinkphantasm.ru/',
