@@ -1,9 +1,7 @@
-import time
-
-from fastapi import APIRouter, UploadFile
+from fastapi import APIRouter, Depends, UploadFile
 from fastapi.responses import HTMLResponse
 
-from ..config import s3, config
+from ..internal.s3_adapter import S3Adapter, new_s3_adapter
 
 
 router = APIRouter()
@@ -15,10 +13,11 @@ async def health():
 
 
 @router.post("/api/upload", response_class=HTMLResponse)
-async def upload(file: UploadFile):
-    filename = f"{int(time.time())}-{file.filename}"
-    s3.upload_fileobj(file.file, config.bucket, filename)
-    file_url = f"https://storage.yandexcloud.net/hieda/{filename}"
+async def upload(
+    file: UploadFile,
+    s3_adapter: S3Adapter = Depends(new_s3_adapter),
+):
+    file_url = s3_adapter.upload(file.file, file.filename)
 
     return HTMLResponse(
         content=f"""<div class="clip-area">
