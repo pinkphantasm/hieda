@@ -57,6 +57,8 @@ services:
       - S3_BUCKET=${S3_BUCKET}
       - S3_KEY=${S3_KEY}
       - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_STORAGE_URL=${S3_STORAGE_URL}
+      - S3_DOWNLOAD_URL=${S3_DOWNLOAD_URL}
     labels:
       - traefik.http.routers.upload.entrypoints=http
       - traefik.http.routers.upload.rule=PathPrefix(`/upload`)
