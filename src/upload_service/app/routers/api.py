@@ -9,7 +9,7 @@ router = APIRouter()
 
 @router.get("/api/health", status_code=200)
 async def health():
-    return {"details": "All systems operationals"}
+    return {"details": "All systems operational"}
 
 
 @router.post("/api/upload", response_class=HTMLResponse)
