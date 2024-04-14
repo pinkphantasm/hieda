@@ -74,15 +74,6 @@ code, kbd, var, samp, code * {
     margin-bottom: 32px;
 }
 
-.dashboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    font-size: large;
-}
-
 a.link {
     text-decoration: none;
     color: var(--cyan, cyan);
@@ -90,31 +81,4 @@ a.link {
 
 a.link:hover {
     text-decoration: underline;
-}
-
-.tool-link-card {
-    border-left: 2px solid var(--bg2, gray);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 8px 0 8px 16px;
-    margin-block: 20px;
-}
-
-.tool-link-card[data-hover-border="red"]:hover {
-    border-color: var(--red, red);
-}
-
-.tool-link-card[data-hover-border="green"]:hover {
-    border-color: var(--green, green);
-}
-
-.tool-link-card[data-hover-border="yellow"]:hover {
-    border-color: var(--yellow, yellow);
-}
-
-.tool-link-card[data-hover-border="pink"]:hover {
-    border-color: var(--pink, pink);
 }
