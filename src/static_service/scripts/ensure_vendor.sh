@@ -82,4 +82,17 @@ if [ ! -f "$HTMX_PATH" ]; then
     exit 1
 fi
 
+# HTMX response-targets
+HTMX_EXT_RT_PATH="$JS_DIR/htmx-response-targets.js"
+HTMX_EXT_RT_INSTALLATION_URL="https://unpkg.com/htmx.org/dist/ext/response-targets.js"
+
+if [ ! -f "$HTMX_EXT_RT_PATH" ]; then
+    echo "error: HTMX extension response-targets not found"
+    echo "expected path to exist: \"$HTMX_EXT_RT_PATH\""
+    echo
+    echo "please install it:"
+    echo "$HTMX_EXT_RT_INSTALLATION_URL"
+    exit 1
+fi
+
 echo "All requirements have been satisfied!"
