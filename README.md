@@ -1,46 +1,46 @@
 ![hieda-social-card](https://github.com/pinkphantasm/hieda/assets/110753839/b11cfc4d-f2f0-412c-be1c-c9cb1a6249c6)
 
-<div align="center"><strong>Hieda</strong> is an open source solution for electronic document management.</div>
+<div align="center"><strong>Hieda</strong> - это решение для электронного документооборота с открытым исходным кодом</div>
 
-## Requirements
+## Требования
 
 - [Docker](https://www.docker.com/) (`docker-compose`)
-- Vendor dependencies
-- RSA Certificates
+- Сторонние зависимости
+- RSA-сертификаты
 
-Ensure the vendor dependencies:
+Проверить сторонние зависимости:
 
 ```shell
 cd src/static_service
 ./scripts/ensure_vendor.sh
 ```
 
-Then, follow the instructions provided by the script.
+Далее, следуйте инструкциям, предоставленным скриптом.
 
-To generate private key (required by the certification service), run the following command:
+Чтобы сгенерировать приватный RSA-ключ (требуется для работы удостоверяющего сервиса), запустите следующую команду:
 
 ```shell
 openssl genrsa 2048 | openssl pkcs8 -topk8 -nocrypt > ./src/cert_service/key.pem
 ```
 
-## Run
+## Запуск
 
-App can be run using `docker-compose`:
+Используя `docker-compose`:
 
 ```shell
 docker-compose up
 ```
 
-or, in some cases:
+Или, в некоторых случаях:
 
 ```shell
 docker compose up
 ```
 
-Now, Hieda is available at [localhost](http://localhost).
+Теперь Hieda доступна по адресу [localhost](http://localhost).
 
-## Configuration
+## Конфигурация
 
-You can configure Hieda via `docker-compose.yml`.
+Вы можете настраивать Hieda через `docker-compose.yml`.
 
-Services themselves are configured via environment variables. See `README.md` of each service for more details.
+Сами сервисы настраиваются через переменные окружения. См. `README.md` каждого сервиса для более подробной информации.
